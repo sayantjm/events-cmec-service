@@ -67,4 +67,16 @@ public class UserDaoTest {
         assertThat(user.getSurname()).isEqualTo(newSurname);
 
     }
+
+    @Test
+    @Transactional
+    void shouldRemoveUser() {
+        List<User> userList = this.repository.findAll();
+        int found = userList.size();
+
+        this.repository.delete(userList.get(0));
+
+        userList = this.repository.findAll();
+        assertThat(userList.size()).isEqualTo(found - 1);
+    }
 }
