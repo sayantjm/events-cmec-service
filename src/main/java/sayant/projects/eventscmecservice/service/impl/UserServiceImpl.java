@@ -54,4 +54,10 @@ public class UserServiceImpl implements UserService {
         List<User> usersFound = userRepository.findBySurname(surname);
         return usersFound.stream().map(userMapper::userTouserDTO).collect(Collectors.toList());
     }
+
+    @Override
+    public void removeUser(String username) {
+        User user = userRepository.findById(username).orElseThrow(NotFoundException::new);
+        userRepository.delete(user);
+    }
 }

@@ -89,4 +89,17 @@ public class UserServiceTest {
         listUsers = userService.listAllBySurname("Perales");
         assertThat(listUsers).hasSize(2);
     }
+
+    @Test
+    public void shouldRemoveUser() {
+
+        UserDTO existingUser = userService.getByUserName("perajua");
+        assertThat(existingUser).isNotNull();
+
+        userService.removeUser("perajua");
+
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            UserDTO perajua = userService.getByUserName("perajua");
+        });
+    }
 }

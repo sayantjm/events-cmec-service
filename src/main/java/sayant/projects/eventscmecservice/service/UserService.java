@@ -15,6 +15,8 @@ public interface UserService {
 
     UserDTO updateUser(String username, UserDTO userDTO);
 
+    void removeUser(String username);
+
     List<UserDTO> listAll();
 
     List<UserDTO> listAllBySurname(String surname);
